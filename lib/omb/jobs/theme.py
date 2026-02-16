@@ -21,6 +21,8 @@ class omb_themer:
       return self.unset()
     elif self.arg.info:
       return self.info()
+    elif self.arg.list()
+      return self.list()
     else:
       sys.stderr.write('there is nothing to do\n')
       return -1
@@ -28,7 +30,7 @@ class omb_themer:
   # omb theme -s
   def set(self) -> int:
     target_theme: str = self.arg.set
-    stylish_theme: str = f'\x1b[1m\x1b[4m{target_theme}\x1b[0m'
+    stylish_theme: str = omb_themer.classy(target_theme)
     themes: list[str] = []
     first_time_invocation: bool = False
 
@@ -133,8 +135,52 @@ class omb_themer:
   # omb theme -i
   def info(self) -> int:
     target_theme: str = self.arg.info
-    self.status.push(status_tags.fail, 'todo: get info about theme %s' % target_theme)
+    theme_filepath: str = os.path.join(self.theme_directory, f'{target_theme}.omb_theme.bash')
+    theme_info: dict = omb_themer.simple_keyval(omb_themer.mini_head(theme_filepath, 5))
+
+    self.status.push(status_tags.ok, 'theme %s (name in file: %s)' % (omb_themer.classy(target_theme), omb_themer.classy(theme_info["OMB_THEME_NAME"])))
+    self.status.push(status_tags.ok, 'author: %s' % omb_themer.classy(theme_info["OMB_THEME_AUTHOR"]))
+    self.status.push(status_tags.ok, 'version: %s' % omb_themer.classy(theme_info["OMB_THEME_VERSION"]))
+    self.status.push(status_tags.ok, 'description: %s' % theme_info["OMB_THEME_DESCRIPTION"])
+
     return -1
+
+  @staticmethod
+  def simple_keyval(source: str) -> dict:
+    result: dict = {}
+    for line in source.split('\n'):
+      if not line.strip():
+        continue
+      if '=' not in line:
+        if line[0] == '#' and line[1] == '!':
+          continue
+        else:
+          status().push(status_tags.fail, 'invalid syntax in source (%s)' % line)
+          sys.exit(-1)
+
+      key: str = line.split('=')[0]
+      value: str = line.split('=')[1].replace('"', '')
+      result[key] = value
+
+    return result
+
+  @staticmethod
+  def mini_head(filename: str, n: int) -> str:
+    result: str = ""
+    with open(filename, 'r') as file:
+      for i, line in enumerate(file):
+        if not line.strip():
+          i += 1
+        result += line
+        result += '\n'
+        if i == n:
+          return result
+
+    return result
+
+  @staticmethod
+  def classy(s: str) -> int:
+    return f'\x1b[1m\x1b[4m{s}\x1b[0m'
 
   @staticmethod
   def get_user_home_directory() -> str:
