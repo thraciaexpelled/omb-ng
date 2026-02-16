@@ -1,0 +1,57 @@
+<h1 align='center'>omb-ng!</h1>
+omb-ng! (Oh My Bash, Next Generation!) is a theme manager for GNU Bash.
+It can backup, restore, set and unset themes.
+
+# Installation and Usage
+
+## Installing omb-ng!
+Copy and paste this to a terminal window.
+```commandline
+git clone https://www.github.com/thraciaexpelled/omb-ng
+cd omb-ng
+./install.sh
+```
+
+## Usage
+### Backing up files
+omb-ng! can back up any Bash related files in `~`.
+omb-ng! also backs up files whenever a theme is to be set.
+
+```commandline
+omb backup
+```
+
+### Restoring files
+```commandline
+omb backup --restore
+```
+
+> [!NOTE]
+> In future versions of omb-ng!, `--restore` will get it's own subcommand.
+
+### Setting a theme
+Theme __clangalicious__ is installed to the system if said `y` to.
+
+```commandline
+omb theme --set clangalicious
+```
+
+`--set` can be shortened to `-s`.
+```commandline
+omb theme -s clangalicious
+```
+
+### Unsetting the current theme
+```commandline
+omb theme --unset
+```
+
+`--unset` can be shortened to `-u`.
+```commandline
+omb theme --unset
+```
+
+# License
+MIT.
+
+<h1 align='center'>CLANGALICIOUS!</h1>

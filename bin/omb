@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+""" Main entry point for oh-my-bash. """
+
+import sys, os
+lp = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(lp))))
+
+try:
+  import lib
+except Exception as e:
+  sys.stderr.write("ERROR: cannot import omb app module: %s\n" % e)
+  sys.exit(-1)
+
+runtime = lib.omb_runtime(sys.argv[1:])
+sys.exit(runtime.start_runtime())
