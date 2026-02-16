@@ -19,10 +19,13 @@ class omb_themer:
       return self.set()
     elif self.arg.unset:
       return self.unset()
+    elif self.arg.info:
+      return self.info()
     else:
       sys.stderr.write('there is nothing to do\n')
       return -1
 
+  # omb theme -s
   def set(self) -> int:
     target_theme: str = self.arg.set
     stylish_theme: str = f'\x1b[1m\x1b[4m{target_theme}\x1b[0m'
@@ -99,6 +102,7 @@ class omb_themer:
 
     return -1
 
+  # omb theme -u
   def unset(self) -> int:
     invocation_line: int = self.get_omb_theme_invocation_line()
 
@@ -125,6 +129,12 @@ class omb_themer:
       self.status.push(status_tags.fail, 'failed to unset current theme %s' % e)
       return -1
     return 0
+
+  # omb theme -i
+  def info(self) -> int:
+    target_theme: str = self.arg.info
+    self.status.push(status_tags.fail, 'todo: get info about theme %s' % target_theme)
+    return -1
 
   @staticmethod
   def get_user_home_directory() -> str:

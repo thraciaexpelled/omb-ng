@@ -40,6 +40,11 @@ class omb_runtime:
       '--unset', '-u', action='store_true', help=self.textdata.sub_theme.prog_help_theme_unset
     )
 
+    # omb theme --info
+    theme.add_argument(
+      '--info', '-i', type=str, help=self.textdata.sub_theme.prog_help_theme_info
+    )
+
     # omb backup --clean
     backup.add_argument(
       '--clean', '-c', action='store_true', help=self.textdata.sub_backup.prog_help_backup_clean
