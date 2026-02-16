@@ -21,7 +21,7 @@ class omb_themer:
       return self.unset()
     elif self.arg.info:
       return self.info()
-    elif self.arg.list()
+    elif self.arg.list:
       return self.list()
     else:
       sys.stderr.write('there is nothing to do\n')
@@ -143,7 +143,13 @@ class omb_themer:
     self.status.push(status_tags.ok, 'version: %s' % omb_themer.classy(theme_info["OMB_THEME_VERSION"]))
     self.status.push(status_tags.ok, 'description: %s' % theme_info["OMB_THEME_DESCRIPTION"])
 
-    return -1
+    return 0
+
+  # omb theme -l
+  def list(self) -> int:
+    self.status.push(status_tags.fail, 'THIS IS UNFINISHED.')
+    print(os.listdir(self.theme_directory))
+    return 0
 
   @staticmethod
   def simple_keyval(source: str) -> dict:

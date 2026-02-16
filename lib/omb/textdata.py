@@ -7,7 +7,7 @@ class textdata:
     prog_help_theme_set = 'Set specified theme, installs theme if not found globally'
     prog_help_theme_unset = 'Unspecify current theme, restoring system\'s default Bash prompt'
     prog_help_theme_info = 'Get information about a theme'
-    prog_help_theme_list = 
+    prog_help_theme_list = 'List themes'
 
   class sub_backup:
     prog_help = 'Backup Bash dotfiles'

@@ -9,7 +9,7 @@ class omb_runtime:
   def __init__(self, argv):
     self.argv = argv
     self.textdata = textdata
-    self.version = "0.9.0"
+    self.version = "0.10.0"
 
     if sys.platform == 'win32':
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)
@@ -47,7 +47,7 @@ class omb_runtime:
 
     # omb theme --list
     theme.add_argument(
-      '--list', '-l', type=str, help=self.textdata.sub_theme.prog_help_theme_list
+      '--list', '-l', action='store_true', help=self.textdata.sub_theme.prog_help_theme_list
     )
 
     # omb backup --clean
