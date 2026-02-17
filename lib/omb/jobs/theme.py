@@ -180,8 +180,8 @@ class omb_themer:
     self.status.push(status_tags.ok, '%s themes installed locally' % omb_themer.classy(count))
 
     if not themes:
-        self.status.push(status_tags.ok, 'no themes found')
-        return 0
+        self.status.push(status_tags.fail, 'no themes found')
+        return -1
 
     themes.sort() # Sort alphabetically for consistent display
     colprint(themes)
