@@ -1,4 +1,4 @@
-<h1 align='center'>omb-ng!</h1>
+<h1 align='center'>Oh My Bash, Next Generation!</h1>
 omb-ng! (Oh My Bash, Next Generation!) is a theme manager for GNU Bash.
 It can backup, restore, set and unset themes.
 
