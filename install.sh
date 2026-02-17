@@ -23,11 +23,13 @@ function install_template_themes {
   cp -vrf extra/themes/* $HOME/.omb_themes
 }
 
-echo "OMB: install template themes? [yn] (case sensitive)"
-read ANSWER
+if [[ ! -d $HOME/.omb_themes ]]; then
+  echo "OMB: install template themes? [yn] (case sensitive)"
+  read ANSWER
 
-if [[ "$ANSWER" == 'y' ]]; then
-  install_template_themes
+  if [[ "$ANSWER" == 'y' ]]; then
+    install_template_themes
+  fi
 fi
 
 cat $HOME/.bashrc | grep "omb end" 1>/dev/null 2>/dev/null
