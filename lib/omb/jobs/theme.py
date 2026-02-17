@@ -147,8 +147,37 @@ class omb_themer:
 
   # omb theme -l
   def list(self) -> int:
-    self.status.push(status_tags.fail, 'THIS IS UNFINISHED.')
-    print(os.listdir(self.theme_directory))
+    def columnify(iterable):
+      # First convert everything to its repr
+      strings = [repr(x) for x in iterable]
+      # Now pad all the strings to match the widest
+      widest = max(len(x) for x in strings)
+      padded = [x.ljust(widest) for x in strings]
+      return padded
+
+    def colprint(iterable, width=72):
+      columns = columnify(iterable)
+      colwidth = len(columns[0])+2
+      perline = (width-4) // colwidth
+      for i, column in enumerate(columns):
+        print(column)
+        if i % perline == perline-1:
+          print('\n  ')
+
+
+    theme_files: list[str] = os.listdir(self.theme_directory)
+    themes = list(map(lambda theme: theme.removesuffix('.omb_theme.bash'), theme_files))
+    count: int = len(theme_files)
+
+    self.status.push(status_tags.ok, '%s themes installed locally' % omb_themer.classy(count))
+
+    if not themes:
+        self.status.push(status_tags.ok, 'no themes found')
+        return 0
+
+    themes.sort() # Sort alphabetically for consistent display
+    colprint(themes)
+
     return 0
 
   @staticmethod
