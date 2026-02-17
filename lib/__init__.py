@@ -9,7 +9,7 @@ class omb_runtime:
   def __init__(self, argv):
     self.argv = argv
     self.textdata = textdata
-    self.version = "0.10.1"
+    self.version = "0.10.3"
 
     if sys.platform == 'win32':
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)

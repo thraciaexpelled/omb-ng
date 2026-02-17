@@ -28,7 +28,7 @@ class status:
     else:
       try:
         return input(' %s  %s %s ' % (tag, msg, repr_status_prompt_type(prompt_type)))
-      except EOFError:
+      except (EOFError, KeyboardInterrupt):
         print()
         self.push(status_tags.fail, 'exit', False)
         sys.exit(-1)
