@@ -15,6 +15,7 @@ class omb_runtime:
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)
 
   def start_runtime(self) -> int:
+    print()
     print('%s %s\n' % (__import__('os').path.basename(sys.argv[0]), self.version))
 
     ps = ap.ArgumentParser(

@@ -18,15 +18,23 @@ class omb_backup:
   def do(self) -> int:
     if self.source_is_caller:
       self.status.push(status_tags.ok, 'starting backup job called by source')
-      return self.do_bu_job()
+      retval: int = self.do_bu_job()
+      print()
+      return retval
 
     if self.args.clean:
-      return self.clean()
+      retval: int = self.clean()
+      print()
+      return retval
 
     if self.args.restore:
-      return self.restore()
+      retval: int = self.restore()
+      print()
+      return retval
 
-    return self.do_bu_job()
+    retval: int = self.do_bu_job()
+    print()
+    return retval
 
   def do_bu_job(self) -> int:
     if not omb_backup.check_for_backup_folder():

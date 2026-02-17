@@ -16,13 +16,21 @@ class omb_themer:
   def do(self) -> int:
     # TODO: find a way to do this without using if-statements
     if self.arg.set:
-      return self.set()
+      retval: int = self.set()
+      print()
+      return retval
     elif self.arg.unset:
-      return self.unset()
+      retval: int = self.unset()
+      print()
+      return retval
     elif self.arg.info:
-      return self.info()
+      retval: int = self.info()
+      print()
+      return retval
     elif self.arg.list:
-      return self.list()
+      retval: int = self.list()
+      print()
+      return retval
     else:
       sys.stderr.write('there is nothing to do\n')
       return -1
