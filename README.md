@@ -51,6 +51,9 @@ omb theme --unset
 omb theme --unset
 ```
 
+# Creating themes
+[HOW_TO_MAKE_THEMES.md](HOW_TO_MAKE_THEMES.md)
+
 # License
 MIT.
 
