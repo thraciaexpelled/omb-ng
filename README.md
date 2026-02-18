@@ -15,7 +15,7 @@ cd omb-ng
 ## Usage
 ### Backing up files
 omb-ng! can back up any Bash related files in `~`.
-omb-ng! also backs up files whenever a theme is to be set.
+omb-ng! also backs up files whenever a theme is about to be set.
 
 ```commandline
 omb backup
@@ -30,7 +30,7 @@ omb backup --restore
 > In future versions of omb-ng!, `--restore` will get it's own subcommand.
 
 ### Setting a theme
-Theme __clangalicious__ is installed to the system if said `y` to.
+Theme __clangalicious__ will be installed if said `y` to.
 
 ```commandline
 omb theme --set clangalicious
@@ -48,7 +48,7 @@ omb theme --unset
 
 `--unset` can be shortened to `-u`.
 ```commandline
-omb theme --unset
+omb theme --u
 ```
 
 # Creating themes
