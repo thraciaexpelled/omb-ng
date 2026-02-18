@@ -8,9 +8,10 @@ from lib.status import status, status_tags, status_prompt_type
 from lib.omb.textdata import textdata
 
 class omb_backup:
-  def __init__(self, args = None, source_is_caller = False):
+  def __init__(self, args = None, source_is_caller = False, source_wants_to_restore = False):
     self.args = args
     self.source_is_caller = source_is_caller
+    self.source_wants_to_restore = source_wants_to_restore
     self.status = status()
     self.textdata = textdata()
     self.backup_directory = os.path.join(omb_backup.get_user_home_directory(), '.omb_backups')
@@ -19,6 +20,11 @@ class omb_backup:
     if self.source_is_caller:
       self.status.push(status_tags.ok, 'starting backup job called by source')
       retval: int = self.do_bu_job()
+      print()
+      return retval
+
+    if self.source_wants_to_restore:
+      retval: int = self.restore()
       print()
       return retval
 

@@ -19,3 +19,6 @@ We recommend to install oh-my-bash in a GNUenv (MSYS2, Cygwin, MinGW) if problem
 
 CLANGALICIOUS!
     """
+
+  class sub_restore:
+    prog_help = 'Restore Bash dotfiles'

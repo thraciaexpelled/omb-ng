@@ -28,7 +28,7 @@ class omb_themer:
       print()
       return retval
     elif self.arg.list:
-      retval: int = self.list()
+      retval: int  = self.list()
       print()
       return retval
     else:
@@ -156,9 +156,7 @@ class omb_themer:
   # omb theme -l
   def list(self) -> int:
     def columnify(iterable):
-      # First convert everything to its repr
       strings = [repr(x) for x in iterable]
-      # Now pad all the strings to match the widest
       widest = max(len(x) for x in strings)
       padded = [x.ljust(widest) for x in strings]
       return padded
@@ -180,8 +178,8 @@ class omb_themer:
     self.status.push(status_tags.ok, '%s themes installed locally' % omb_themer.classy(count))
 
     if not themes:
-        self.status.push(status_tags.fail, 'no themes found')
-        return -1
+      self.status.push(status_tags.fail, 'no themes found')
+      return -1
 
     themes.sort() # Sort alphabetically for consistent display
     colprint(themes)

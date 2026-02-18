@@ -26,8 +26,11 @@ omb backup
 omb backup --restore
 ```
 
-> [!NOTE]
-> In future versions of omb-ng!, `--restore` will get it's own subcommand.
+#### OR,
+*(added in 0.11.0!)*
+```commandline
+omb restore
+```
 
 ### Setting a theme
 Theme __clangalicious__ will be installed if said `y` to.

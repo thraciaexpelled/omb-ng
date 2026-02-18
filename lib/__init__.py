@@ -9,7 +9,7 @@ class omb_runtime:
   def __init__(self, argv):
     self.argv = argv
     self.textdata = textdata
-    self.version = "0.10.4"
+    self.version = "0.11.0"
 
     if sys.platform == 'win32':
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)
@@ -26,9 +26,10 @@ class omb_runtime:
 
     sp = ps.add_subparsers(dest='subcommand')
 
-    (theme, backup) = (
+    (theme, backup, restore) = (
       sp.add_parser('theme', help=self.textdata.sub_theme.prog_help),
-      sp.add_parser('backup', help=self.textdata.sub_backup.prog_help)
+      sp.add_parser('backup', help=self.textdata.sub_backup.prog_help),
+      sp.add_parser('restore', help=self.textdata.sub_restore.prog_help)
     )
 
     # omb theme --set <name>
@@ -70,7 +71,9 @@ class omb_runtime:
       case 'backup':
         job = omb_backup(args)
         return job.do()
-        return 0
+      case restore:
+        job = omb_backup(args, False, True)
+        return job.do()
 
     # nothing's happening
     sys.stderr.write('there is nothing to do\n')
