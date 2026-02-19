@@ -16,30 +16,36 @@ class omb_backup:
     self.textdata = textdata()
     self.backup_directory = os.path.join(omb_backup.get_user_home_directory(), '.omb_backups')
   
+  # i'm fucking sorry okay
   def do(self) -> int:
     if self.source_is_caller:
       self.status.push(status_tags.ok, 'starting backup job called by source')
       retval: int = self.do_bu_job()
-      print()
+      if not self.source_is_caller:
+        print()
       return retval
 
     if self.source_wants_to_restore:
       retval: int = self.restore()
-      print()
+      if not self.source_is_caller:
+        print()
       return retval
 
     if self.args.clean:
       retval: int = self.clean()
-      print()
+      if not self.source_is_caller:
+        print()
       return retval
 
     if self.args.restore:
       retval: int = self.restore()
-      print()
+      if not self.source_is_caller:
+        print()
       return retval
 
     retval: int = self.do_bu_job()
-    print()
+    if not self.source_is_caller:
+        print()
     return retval
 
   def do_bu_job(self) -> int:
