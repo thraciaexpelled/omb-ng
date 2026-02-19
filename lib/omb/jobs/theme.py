@@ -67,7 +67,7 @@ class omb_themer:
 
     if first_time_invocation:
       self.status.push(status_tags.ok, 'preparing for first theme setting')
-      self.status.push(status_tags.ok, 'starting a backup (bu :3)')
+      self.status.push(status_tags.ok, 'starting a backup')
       assert self.bu.do() == 0, "bu job failed rofl"
       self.status.push(status_tags.give, 'setting theme %s' % stylish_theme)
 
@@ -175,13 +175,14 @@ class omb_themer:
     themes = list(map(lambda theme: theme.removesuffix('.omb_theme.bash'), theme_files))
     count: int = len(theme_files)
 
-    self.status.push(status_tags.ok, '%s themes installed locally' % omb_themer.classy(count))
+    def pluralize_if_needed(word: str, count: int) -> str:
+      if count >= 2:
+        return word + 's'
+      return word
 
-    if not themes:
-      self.status.push(status_tags.fail, 'no themes found')
-      return -1
+    self.status.push(status_tags.ok, '%s %s installed locally' % (omb_themer.classy(count), pluralize_if_needed('theme', count)))
 
-    themes.sort() # Sort alphabetically for consistent display
+    themes.sort()
     colprint(themes)
 
     return 0
