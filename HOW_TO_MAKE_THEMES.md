@@ -15,7 +15,9 @@ OMB_THEME_VERSION="26H2"
 export PS1=" *  "
 ```
 
-**Notice the first four variable declarations?** These are **required** (although not enforced as of `0.10.3`) as omb-ng! reads the first 4-5 lines of the theme file, and then parses the variables as metadata. omb-ng! will panic if any of those variables are invalid.
+**Notice the first four variable declarations?** These are **required** (although not enforced as of >= `0.10.3`) as omb-ng! reads the first 4-5 lines of the theme file, and then parses the variables as metadata. omb-ng! will panic if any of those variables are invalid.
+
+**
 
 ### Naming conventions
 ```
