@@ -12,7 +12,7 @@ cd omb-ng
 ./install.sh
 ```
 
-## Usage
+## Using omb-ng!
 ### Backing up files
 omb-ng! can back up any Bash related files in `~`.
 omb-ng! also backs up files whenever a theme is about to be set.
@@ -50,7 +50,7 @@ omb theme --unset
 
 `--unset` can be shortened to `-u`.
 ```commandline
-omb theme --u
+omb theme -u
 ```
 
 # Creating themes
