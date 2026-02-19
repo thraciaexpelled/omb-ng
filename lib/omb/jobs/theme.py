@@ -1,5 +1,6 @@
 import os
 import sys
+import shutil
 
 from lib.status import status, status_tags, status_prompt_type
 from lib.omb.textdata import textdata
@@ -156,19 +157,25 @@ class omb_themer:
   # omb theme -l
   def list(self) -> int:
     def columnify(iterable):
-      strings = [repr(x) for x in iterable]
+      strings = [str(x) for x in iterable]
       widest = max(len(x) for x in strings)
       padded = [x.ljust(widest) for x in strings]
       return padded
 
-    def colprint(iterable, width=72):
+    def colprint(iterable, width=None):
+      if width is None:
+        width = shutil.get_terminal_size().columns
+
       columns = columnify(iterable)
-      colwidth = len(columns[0])+2
-      perline = (width-4) // colwidth
+      colwidth = len(columns[0]) + 2
+      perline = max(1, (width - 4) // colwidth)
+      
+      print('  ', end='')
       for i, column in enumerate(columns):
-        print(column)
-        if i % perline == perline-1:
-          print('\n  ')
+        print(column, end='  ')
+        if i % perline == perline - 1 and i != len(columns) - 1:
+          print('\n  ', end='')
+      print()
 
 
     theme_files: list[str] = os.listdir(self.theme_directory)
@@ -182,8 +189,9 @@ class omb_themer:
 
     self.status.push(status_tags.ok, '%s %s installed locally' % (omb_themer.classy(count), pluralize_if_needed('theme', count)))
 
-    themes.sort()
-    colprint(themes)
+    if themes:
+      themes.sort()
+      colprint(themes)
 
     return 0
 
