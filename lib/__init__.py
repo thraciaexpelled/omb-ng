@@ -9,7 +9,7 @@ class omb_runtime:
   def __init__(self, argv):
     self.argv = argv
     self.textdata = textdata
-    self.version = "0.11.0"
+    self.version = "0.11.1"
 
     if sys.platform == 'win32':
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)
@@ -71,7 +71,7 @@ class omb_runtime:
       case 'backup':
         job = omb_backup(args)
         return job.do()
-      case restore:
+      case 'restore':
         job = omb_backup(args, False, True)
         return job.do()
 
