@@ -32,7 +32,7 @@ omb restore
 ```
 
 ### Setting a theme
-Theme <u><b>clangalicious</b></u> will be installed if said `y` to.
+Theme ***clangalicious*** will be installed if said `y` to.
 
 ```commandline
 omb theme --set clangalicious
