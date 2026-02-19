@@ -101,7 +101,7 @@ class omb_themer:
         self.status.push(status_tags.fail, 'failed to set theme %s: %s' % (stylish_theme, e))
         return -1
 
-    self.status.push(status_tags.ok, 'run %s to commit changes' % f'\x1b[1m\x1b[4msource {omb_themer.get_user_home_directory()}/.bashrc\x1b[0m')
+    self.status.push(status_tags.ok, 'run %s to commit changes' % omb_themer.classy(f'{omb_themer.get_user_home_directory()}/.bashrc'))
     return 0
 
   def get_omb_theme_invocation_line(self) -> int:
