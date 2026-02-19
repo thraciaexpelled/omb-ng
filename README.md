@@ -26,14 +26,13 @@ omb backup
 omb backup --restore
 ```
 
-#### OR,
-*(added in 0.11.0!)*
+**OR**, *(added in 0.11.0!)*
 ```commandline
 omb restore
 ```
 
 ### Setting a theme
-Theme __clangalicious__ will be installed if said `y` to.
+Theme <u><b>clangalicious</b></u> will be installed if said `y` to.
 
 ```commandline
 omb theme --set clangalicious
