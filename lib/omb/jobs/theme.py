@@ -28,7 +28,7 @@ class omb_themer:
       print()
       return retval
     elif self.arg.list:
-      retval: int  = self.list()
+      retval: int = self.list()
       print()
       return retval
     else:
@@ -57,7 +57,7 @@ class omb_themer:
         return -1
 
     if target_theme not in themes:
-      self.status.push(status_tags.fail, 'theme %s not found' % f'\x1b[1m\x1b[4m{target_theme}\x1b[0m')
+      self.status.push(status_tags.fail, 'theme %s not found' % stylish_theme)
       self.status.push(status_tags.fail, 'online installation is not implemented yet')
       return 1
     
@@ -81,7 +81,7 @@ class omb_themer:
         self.status.push(status_tags.fail, 'failed to set theme %s: %s' % (stylish_theme, e))
         return -1
     else:
-      self.status.push(status_tags.ok, 'starting a backup (bu :3)')
+      self.status.push(status_tags.ok, 'starting a backup')
       assert self.bu.do() == 0, "bu job failed rofl"
       # apparently this should just work lol
       self.status.push(status_tags.give, 'setting theme %s' % stylish_theme)
