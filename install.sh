@@ -1,6 +1,26 @@
 #!/usr/bin/env bash
 
 PREFIX="$HOME/.omb/bin"
+PIP=`which pip`
+
+python dependency_checker.py 2>/dev/null
+if [[ $? -ne 0 ]]; then
+  echo "OMB: installing dependencies"
+  if [[ -z "$PIP" ]]; then
+    echo "OMB: ERR: pip is not installed" >&2
+    exit 1
+  fi
+
+  $PIP install -r requirements.txt 1>/tmp/omb-log-stdout 2>/tmp/omb-log-stderr
+  if [[ $? -ne 0 ]]; then
+    echo "OMB: ERR: failed" >&2
+    echo "OMB: stderr output of last command:" >&2
+    cat /tmp/omb-log-stderr
+    rm -rf /tmp/omb-log-stdout
+    rm -rf /tmp/omb-log-stderr
+    exit 1
+  fi
+fi
 
 echo "OMB: installing oh my bash..."
 mkdir -p $PREFIX

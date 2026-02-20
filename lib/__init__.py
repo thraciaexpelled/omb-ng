@@ -3,13 +3,14 @@ import argparse as ap
 
 from lib.omb.jobs.theme import omb_themer
 from lib.omb.jobs.backup import omb_backup
+from lib.omb.jobs.repo import omb_repo
 from lib.omb.textdata import textdata
 
 class omb_runtime:
   def __init__(self, argv):
     self.argv = argv
     self.textdata = textdata
-    self.version = "0.11.5"
+    self.version = "0.12.0-unready"
 
     if sys.platform == 'win32':
       sys.stderr.write('%s\n' % textdata.sub_backup.prog_backup_win32)
@@ -26,10 +27,11 @@ class omb_runtime:
 
     sp = ps.add_subparsers(dest='subcommand')
 
-    (theme, backup, restore) = (
+    (theme, backup, restore, repo) = (
       sp.add_parser('theme', help=self.textdata.sub_theme.prog_help),
       sp.add_parser('backup', help=self.textdata.sub_backup.prog_help),
-      sp.add_parser('restore', help=self.textdata.sub_restore.prog_help)
+      sp.add_parser('restore', help=self.textdata.sub_restore.prog_help),
+      sp.add_parser('repo', help="floof")
     )
 
     # omb theme --set <name>
@@ -73,6 +75,9 @@ class omb_runtime:
         return job.do()
       case 'restore':
         job = omb_backup(args, False, True)
+        return job.do()
+      case 'repo':
+        job = omb_repo(args)
         return job.do()
 
     # nothing's happening
